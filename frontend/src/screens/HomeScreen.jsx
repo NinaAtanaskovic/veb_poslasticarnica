@@ -1,8 +1,41 @@
+import { Container, Row, Col } from 'react-bootstrap';
+import Product from '../components/Product';
+import { useGetProductsQuery } from '../slices/productsApiSlice';
+
 const HomeScreen = () => {
+  const { data: products, isLoading, error } = useGetProductsQuery();
+
   return (
-    <div>
-      <h1>Home — dolazi u Fazi 2</h1>
-    </div>
+    <>
+      {}
+      <section className="hero-section">
+        <div className="hero-content">
+          <h1 className="hero-title">Dobrodošli u poslastičarnicu Sweet Shop</h1>
+          <p className="hero-subtitle">
+            Svaki zalogaj priča svoju priču — od klasičnih torti do modernih kreacija.
+          </p>
+        </div>
+      </section>
+
+      {/* Proizvodi */}
+      <Container className="products-section">
+        <h2 className="section-title">Naši proizvodi</h2>
+
+        {isLoading ? (
+          <p>Učitavanje...</p>
+        ) : error ? (
+          <p className="text-danger">Greška pri učitavanju proizvoda.</p>
+        ) : (
+          <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+            {products.map((product) => (
+              <Col key={product._id}>
+                <Product product={product} />
+              </Col>
+            ))}
+          </Row>
+        )}
+      </Container>
+    </>
   );
 };
 
