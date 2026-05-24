@@ -1,7 +1,7 @@
 import { Navbar, Nav, Container, Badge, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { FaShoppingCart, FaUser } from 'react-icons/fa';
-import { FaBirthdayCake } from 'react-icons/fa';
+import { FaBirthdayCake, FaShoppingCart, FaUser } from 'react-icons/fa';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../slices/authSlice';
@@ -24,7 +24,6 @@ const Header = () => {
     <header>
       <Navbar expand="lg" collapseOnSelect className="main-navbar">
         <Container>
-          {/* Logo */}
           <LinkContainer to="/">
             <Navbar.Brand className="navbar-brand-custom">
               <FaBirthdayCake className="brand-icon" />
@@ -32,17 +31,15 @@ const Header = () => {
             </Navbar.Brand>
           </LinkContainer>
 
-          <Navbar.Toggle aria-controls="main-nav" className="navbar-toggler-custom" />
+          <Navbar.Toggle aria-controls="main-nav" />
 
           <Navbar.Collapse id="main-nav">
             <Nav className="ms-auto align-items-center gap-1">
 
-              {/* O nama */}
               <LinkContainer to="/about">
                 <Nav.Link className="nav-link-custom">O nama</Nav.Link>
               </LinkContainer>
 
-              {/* Korpa */}
               <LinkContainer to="/cart">
                 <Nav.Link className="nav-link-custom nav-cart">
                   <FaShoppingCart />
@@ -53,18 +50,16 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
 
-              {/* Login / User dropdown */}
               {userInfo ? (
                 <NavDropdown
                   title={
-                    <span className="nav-link-custom">
+                    <span className="user-nav-label">
                       <FaUser className="me-1" />
                       {userInfo.name}
                     </span>
                   }
                   id="user-dropdown"
                   align="end"
-                  className="nav-dropdown-custom"
                 >
                   <NavDropdown.Item onClick={logoutHandler}>
                     Odjavi se
@@ -78,6 +73,7 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
               )}
+
             </Nav>
           </Navbar.Collapse>
         </Container>

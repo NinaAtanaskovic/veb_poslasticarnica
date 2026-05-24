@@ -3,7 +3,6 @@ import { FaBirthdayCake } from 'react-icons/fa';
 
 const Footer = () => {
   const year = new Date().getFullYear();
-
   return (
     <footer className="main-footer">
       <Container>
@@ -12,17 +11,13 @@ const Footer = () => {
             <FaBirthdayCake className="me-2 footer-icon" />
             <span className="footer-name">Sweet Shop</span>
           </Col>
-
           <Col md={4} className="text-center mb-2 mb-md-0">
             <small className="footer-copy">
               © {year} Sweet Shop. Sva prava zadržana.
             </small>
           </Col>
-
           <Col md={4} className="text-md-end">
-            <small className="footer-tagline">
-              Pravimo s ljubavlju 🍰
-            </small>
+            <small className="footer-tagline">Pravimo sa ljubavlju 🍰</small>
           </Col>
         </Row>
       </Container>
