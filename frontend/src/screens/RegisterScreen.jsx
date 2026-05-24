@@ -2,20 +2,22 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLoginMutation } from '../slices/usersApiSlice';
+import { useRegisterMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
 import FormContainer from '../components/FormContainer';
 import Loader from '../components/Loader';
 
-const LoginScreen = () => {
+const RegisterScreen = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [login, { isLoading }] = useLoginMutation();
+  const [register, { isLoading }] = useRegisterMutation();
   const { userInfo } = useSelector((state) => state.auth);
 
   const { search } = useLocation();
@@ -28,19 +30,34 @@ const LoginScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      toast.error('Lozinke se ne poklapaju');
+      return;
+    }
     try {
-      const res = await login({ email, password }).unwrap();
+      const res = await register({ name, email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
     } catch (err) {
-      toast.error(err?.data?.message || 'Greška pri prijavi');
+      toast.error(err?.data?.message || 'Greška pri registraciji');
     }
   };
 
   return (
     <FormContainer>
-      <h1 className="form-title">Prijavite se</h1>
+      <h1 className="form-title">Registrujte se</h1>
       <Form onSubmit={submitHandler}>
+        <Form.Group controlId="name" className="mb-3">
+          <Form.Label>Ime</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Unesite ime"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="form-input"
+          />
+        </Form.Group>
+
         <Form.Group controlId="email" className="mb-3">
           <Form.Label>Email adresa</Form.Label>
           <Form.Control
@@ -63,17 +80,28 @@ const LoginScreen = () => {
           />
         </Form.Group>
 
+        <Form.Group controlId="confirmPassword" className="mb-3">
+          <Form.Label>Potvrdite lozinku</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Ponovite lozinku"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="form-input"
+          />
+        </Form.Group>
+
         <Button type="submit" className="btn-form w-100 mt-2" disabled={isLoading}>
-          {isLoading ? 'Učitavanje...' : 'Prijavi se'}
+          {isLoading ? 'Učitavanje...' : 'Registruj se'}
         </Button>
         {isLoading && <Loader />}
       </Form>
 
       <Row className="mt-3">
         <Col className="text-center">
-          Nemate nalog?{' '}
-          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'} className="form-link">
-            Registrujte se
+          Imate nalog?{' '}
+          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'} className="form-link">
+            Prijavite se
           </Link>
         </Col>
       </Row>
@@ -81,4 +109,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;

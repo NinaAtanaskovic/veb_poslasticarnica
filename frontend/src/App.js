@@ -6,13 +6,13 @@ import Footer from './components/Footer';
 const App = () => {
   return (
     <div className="app-wrapper">
-      {/* Header dolazi u Fazi 2 */}
+      {/* Header */}
      <Header />
       <main style={{ minHeight: '80vh', padding: '2rem' }}>
         <Outlet />
       </main>
 
-      {/* Footer dolazi u Fazi 2 */}
+      {/* Footer  */}
       <Footer />
 
       <ToastContainer position="top-right" autoClose={3000} />

@@ -10,17 +10,15 @@ const HomeScreen = () => {
       {}
       <section className="hero-section">
         <div className="hero-content">
-          <h1 className="hero-title">Dobrodošli u poslastičarnicu Sweet Shop</h1>
+          <h1 className="hero-title">Dobrodošli u Sweet Shop</h1>
           <p className="hero-subtitle">
             Svaki zalogaj priča svoju priču — od klasičnih torti do modernih kreacija.
           </p>
         </div>
       </section>
 
-      {/* Proizvodi */}
       <Container className="products-section">
         <h2 className="section-title">Naši proizvodi</h2>
-
         {isLoading ? (
           <p>Učitavanje...</p>
         ) : error ? (
