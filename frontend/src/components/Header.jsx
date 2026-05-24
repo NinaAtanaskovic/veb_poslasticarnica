@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar expand="lg" collapseOnSelect className="main-navbar">
+      <Navbar expand="lg" expand="md" collapseOnSelect className="main-navbar">
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand className="navbar-brand-custom">
