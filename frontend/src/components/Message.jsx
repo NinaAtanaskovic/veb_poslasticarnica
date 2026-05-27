@@ -14,3 +14,4 @@ const Message = ({ variant = 'info', children }) => {
 };
 
 export default Message;
+//sluzi za prikaz statusnih poruka u PlaceOrderSkrinu

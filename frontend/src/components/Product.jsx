@@ -1,11 +1,11 @@
 import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; //pravi link koji menja rutu bez reloada
 import Rating from './Rating';
 
-const Product = ({ product }) => {
-  return (
+const Product = ({ product }) => { //prima prozvod sa svim osobinama iz mocka
+  return ( //kada se klike na pr da link vodi ka stranici tog pr(taj id)
     <Card className="product-card h-100">
-      <Link to={`/product/${product._id}`}>
+      <Link to={`/product/${product._id}`}> 
         <div className="product-card__img-wrapper">
           <Card.Img
             src={product.image}

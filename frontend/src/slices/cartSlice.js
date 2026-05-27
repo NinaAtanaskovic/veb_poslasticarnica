@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { updateCart } from '../utils/cartUtils';
 
-const initialState = localStorage.getItem('cart')
+const initialState = localStorage.getItem('cart')   //gleda inicijalno stanje
   ? JSON.parse(localStorage.getItem('cart'))
   : { cartItems: [], shippingAddress: {}, paymentMethod: 'Plaćanje pouzećem' };
+//ako ne postoji pocetno stanje pravi ovo 
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -17,7 +18,7 @@ const cartSlice = createSlice({
           x._id === existItem._id ? item : x
         );
       } else {
-        state.cartItems = [...state.cartItems, item];
+        state.cartItems = [...state.cartItems, item];//svi el iz postojeceg u novi niz
       }
       return updateCart(state);
     },

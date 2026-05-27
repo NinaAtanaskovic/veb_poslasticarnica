@@ -30,9 +30,9 @@ const Header = () => {
               <span className="brand-name">Sweet Shop</span>
             </Navbar.Brand>
           </LinkContainer>
-
+          
           <Navbar.Toggle aria-controls="main-nav" />
-
+          
           <Navbar.Collapse id="main-nav">
             <Nav className="ms-auto align-items-center gap-1">
 

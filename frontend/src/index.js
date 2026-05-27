@@ -36,6 +36,8 @@ const router = createBrowserRouter(
       <Route path="/about" element={<AboutScreen />} />
 
       {/* Zaštićene rute — samo ulogovani korisnici */}
+      /* za demonstraciju izgleda ekrana samo obrisemo da 
+            je privatna ruta i stavimo u browser /ekran */
       <Route element={<PrivateRoute />}>
         <Route path="/shipping" element={<ShippingScreen />} />
         <Route path="/payment" element={<PaymentScreen />} />

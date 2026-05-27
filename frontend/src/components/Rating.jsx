@@ -3,7 +3,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 const Rating = ({ value, text }) => {
   return (
     <div className="rating d-flex align-items-center gap-1">
-      {[1, 2, 3, 4, 5].map((star) => (
+      {[1, 2, 3, 4, 5].map((star) => ( //prolazi kroz svaki el u nizu start je tren el
         <span key={star} className="star-icon">
           {value >= star ? (
             <FaStar />

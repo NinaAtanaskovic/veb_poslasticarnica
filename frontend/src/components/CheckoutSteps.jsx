@@ -1,6 +1,5 @@
-import { LinkContainer } from 'react-router-bootstrap';
-import { Nav } from 'react-bootstrap';
 
+//svaku ulazni parametar predstavlja dal je korak aktivan ili ne
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
   const steps = [
     { label: 'Prijava', path: '/login', active: step1 },

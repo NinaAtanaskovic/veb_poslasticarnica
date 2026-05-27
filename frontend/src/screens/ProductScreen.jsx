@@ -11,13 +11,13 @@ import { addToCart } from '../slices/cartSlice';
 const ProductScreen = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [qty, setQty] = useState(1);
+  const dispatch = useDispatch(); //za slanje akcija u store
+  const [qty, setQty] = useState(1); //kolicina
 
   const { data: product, isLoading, error } = useGetProductDetailsQuery(id);
 
   const addToCartHandler = () => {
-    dispatch(addToCart({ ...product, qty }));
+    dispatch(addToCart({ ...product, qty })); //salje akciju
     toast.success(`${product.name} dodato u korpu!`);
     navigate('/cart');
   };
@@ -76,8 +76,8 @@ const ProductScreen = () => {
                   <Form.Select
                     value={qty}
                     onChange={(e) => setQty(Number(e.target.value))}
-                    className="qty-select"
-                  >
+                    className="qty-select" //ako je na stanju
+                  > 
                     {[...Array(product.countInStock).keys()].map((x) => (
                       <option key={x + 1} value={x + 1}>{x + 1}</option>
                     ))}

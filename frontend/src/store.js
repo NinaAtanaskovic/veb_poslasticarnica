@@ -5,11 +5,12 @@ import authSliceReducer from './slices/authSlice';
 
 const store = configureStore({
   reducer: {
-    [apiSlice.reducerPath]: apiSlice.reducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,  //deo za serverpodaci sa servera, loading stanje, cache
+
     cart: cartSliceReducer,
     auth: authSliceReducer,
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: (getDefaultMiddleware) =>  //prati sta se desava i salje te zahteve po potrebi bez njega ne moze
     getDefaultMiddleware().concat(apiSlice.middleware),
   devTools: true,
 });

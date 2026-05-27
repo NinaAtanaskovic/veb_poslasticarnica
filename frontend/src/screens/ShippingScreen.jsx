@@ -18,7 +18,7 @@ const ShippingScreen = () => {
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //da ne moze da ide obican submit
     dispatch(saveShippingAddress({ address, city, postalCode, country }));
     navigate('/payment');
   };

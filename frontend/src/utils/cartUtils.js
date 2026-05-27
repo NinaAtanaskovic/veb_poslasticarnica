@@ -1,10 +1,10 @@
 export const addDecimal = (num) => {
-  return Math.round(num * 100) / 100;
+  return Math.round(num * 100) / 100; //vraca broj
 };
 
 export const updateCart = (state) => {
   // Ukupna cena stavki
-  state.itemsPrice = addDecimal(
+  state.itemsPrice = addDecimal( //dobija stavke svaka stavka ima cenu i kolicinu, mnozi se i sabira se ukupno
     state.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
 

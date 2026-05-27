@@ -22,12 +22,12 @@ const LoginScreen = () => {
   const sp = new URLSearchParams(search);
   const redirect = sp.get('redirect') || '/';
 
-  useEffect(() => {
+  useEffect(() => { //ako je ulogovan na zeljenu str ako nije ostaje
     if (userInfo) navigate(redirect);
   }, [userInfo, redirect, navigate]);
 
   const submitHandler = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); //sprecava refresh stranice
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
