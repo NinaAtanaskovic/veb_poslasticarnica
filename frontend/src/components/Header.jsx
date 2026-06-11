@@ -5,6 +5,9 @@ import { FaBirthdayCake, FaShoppingCart, FaUser } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../slices/authSlice';
+//selektori znaju sta uzimaju jer prvo slice kreira reducere 
+//onda store.js dodaje reducer za cart ili auth
+//index.js prosledjuje store preko provajdera
 
 const Header = () => {
   const dispatch = useDispatch();

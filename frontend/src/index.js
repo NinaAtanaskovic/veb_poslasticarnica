@@ -23,7 +23,12 @@ import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import AboutScreen from './screens/AboutScreen';
-
+//ulazna tacka app
+//pravimo ruter (prikazuje komp na osnovu url)
+//index nam je za  home screen to da prikaze
+//RouterProvider koristi ruter koji smo napravili da prikaze odg komp
+//Provajder omogucava svim el u njemu pristup storu
+//root je div i index.html gde se uctitava React app
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -38,7 +43,7 @@ const router = createBrowserRouter(
       {/* Zaštićene rute — samo ulogovani korisnici */}
       /* za demonstraciju izgleda ekrana samo obrisemo da 
             je privatna ruta i stavimo u browser /ekran */
-      <Route element={<PrivateRoute />}>
+      <Route >
         <Route path="/shipping" element={<ShippingScreen />} />
         <Route path="/payment" element={<PaymentScreen />} />
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
@@ -50,8 +55,9 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={store}> 
       <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 );
+//povezujemo redux store sa react komponentama

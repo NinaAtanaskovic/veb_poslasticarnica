@@ -7,6 +7,6 @@ const baseQuery = fetchBaseQuery({ baseUrl: BASE_URL });
 
 export const apiSlice = createApi({
   baseQuery,
-  tagTypes: ['Product', 'Order', 'User'], //da Redux zna kada treba da osveži podatke.
+  tagTypes: ['Product', 'Order', 'User'], // sta treba da osveži podatke.
   endpoints: () => ({}),
 });

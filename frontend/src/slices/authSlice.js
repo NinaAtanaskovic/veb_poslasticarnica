@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+//gore deo za prijavljenog korisnika
 const initialState = {      //kada se app otvori gleda da li je neko ostao prijavljen (ako da vraca ga)
   userInfo: localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo')) //samo string pa je zato json

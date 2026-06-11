@@ -1,7 +1,7 @@
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom'; //pravi link koji menja rutu bez reloada
 import Rating from './Rating';
-
+//uzima product is homa 
 const Product = ({ product }) => { //prima prozvod sa svim osobinama iz mocka
   return ( //kada se klike na pr da link vodi ka stranici tog pr(taj id)
     <Card className="product-card h-100">
