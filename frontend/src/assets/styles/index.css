@@ -924,3 +924,156 @@ main { flex: 1; }
   height: 100%;
   min-height: 280px;
 }
+/* =============================================
+   ADMIN PANEL 
+   ============================================= */
+
+/* --- Admin wrapper --- */
+.admin-screen {
+  padding: 1rem 0;
+}
+
+.admin-title {
+  color: var(--color-primary);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-title-icon {
+  font-size: 1.6rem;
+}
+
+/* --- Table --- */
+.admin-table-wrapper {
+  background: var(--color-white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.admin-table {
+  margin-bottom: 0;
+}
+
+.admin-table thead tr {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.admin-table thead th {
+  border: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 0.85rem 1rem;
+}
+
+.admin-table tbody tr:hover {
+  background-color: rgba(107, 63, 160, 0.05);
+}
+
+.admin-table td {
+  vertical-align: middle;
+  padding: 0.75rem 1rem;
+  border-color: var(--color-border);
+}
+
+/* --- Category badge --- */
+.admin-category-badge {
+  background-color: var(--color-primary) !important;
+  color: var(--color-white);
+  font-weight: 500;
+}
+
+/* --- Buttons in tables --- */
+.admin-btn-detail,
+.admin-btn-edit {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.admin-btn-detail:hover,
+.admin-btn-edit:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.admin-btn-delete {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.admin-btn-delete:hover {
+  background-color: #dc3545;
+  color: var(--color-white);
+}
+
+/* --- Create button --- */
+.admin-btn-create {
+  background-color: var(--color-accent);
+  border: none;
+  color: var(--color-white);
+  font-weight: 600;
+  padding: 0.5rem 1.1rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.admin-btn-create:hover {
+  background-color: #e08c4a;
+  color: var(--color-white);
+}
+
+/* --- Back link --- */
+.admin-back-btn {
+  display: inline-block;
+  margin-bottom: 1.2rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.admin-back-btn:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* --- Form --- */
+.admin-form {
+  background: var(--color-white);
+  padding: 1.5rem;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.admin-label {
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.3rem;
+}
+
+.admin-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(107, 63, 160, 0.2);
+}
+
+.admin-btn-submit {
+  background-color: var(--color-primary);
+  border: none;
+  color: var(--color-white);
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.admin-btn-submit:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+}

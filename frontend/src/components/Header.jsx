@@ -1,13 +1,10 @@
 import { Navbar, Nav, Container, Badge, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FaBirthdayCake, FaShoppingCart, FaUser } from 'react-icons/fa';
-
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../slices/authSlice';
-//selektori znaju sta uzimaju jer prvo slice kreira reducere 
-//onda store.js dodaje reducer za cart ili auth
-//index.js prosledjuje store preko provajdera
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -25,7 +22,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar expand="lg" expand="md" collapseOnSelect className="main-navbar">
+      <Navbar expand="lg" collapseOnSelect className="main-navbar">
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand className="navbar-brand-custom">
@@ -33,9 +30,9 @@ const Header = () => {
               <span className="brand-name">Sweet Shop</span>
             </Navbar.Brand>
           </LinkContainer>
-          
+
           <Navbar.Toggle aria-controls="main-nav" />
-          
+
           <Navbar.Collapse id="main-nav">
             <Nav className="ms-auto align-items-center gap-1">
 
@@ -64,6 +61,23 @@ const Header = () => {
                   id="user-dropdown"
                   align="end"
                 >
+                  <NavDropdown.Item as={Link} to="/profile">
+                    Moj profil
+                  </NavDropdown.Item>
+
+                  {userInfo.isAdmin && (
+                    <>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item as={Link} to="/admin/productlist">
+                        🍰 Poslastice (Admin)
+                      </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/admin/orderlist">
+                        🧾 Porudžbine (Admin)
+                      </NavDropdown.Item>
+                    </>
+                  )}
+
+                  <NavDropdown.Divider />
                   <NavDropdown.Item onClick={logoutHandler}>
                     Odjavi se
                   </NavDropdown.Item>
