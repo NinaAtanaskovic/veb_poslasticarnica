@@ -1,28 +1,39 @@
-// MOCK verzija — ne poziva backend, vraća lokalne podatke
+import { apiSlice } from './apiSlice';
+import { PRODUCTS_URL, UPLOAD_URL } from '../constants';
 
-
-
-import { createSlice } from '@reduxjs/toolkit';
-import products from '../mock/products_list';
-
-//drzi pocetno stanje proizvoda
-const productsSlice = createSlice({
-  name: 'products',
-  initialState: { list: products, loading: false, error: null },
-  reducers: {},
-}); //ne menja stanje jer nema reducera
-
-export default productsSlice.reducer;
-
-//vraca sve 
-export const useGetProductsQuery = () => ({ 
-  data: products,
-  isLoading: false,
-  error: null,
+export const productsApiSlice = apiSlice.injectEndpoints({
+  endpoints: (builder) => ({
+    getProducts: builder.query({
+      query: () => ({ url: PRODUCTS_URL }),
+      providesTags: ['Product'],
+      keepUnusedDataFor: 5,
+    }),
+    getProductDetails: builder.query({
+      query: (productId) => ({ url: `${PRODUCTS_URL}/${productId}` }),
+      keepUnusedDataFor: 5,
+    }),
+    createProduct: builder.mutation({
+      query: () => ({ url: PRODUCTS_URL, method: 'POST' }),
+      invalidatesTags: ['Product'],
+    }),
+    updateProduct: builder.mutation({
+      query: (data) => ({ url: `${PRODUCTS_URL}/${data.productId}`, method: 'PUT', body: data }),
+      invalidatesTags: ['Product'],
+    }),
+    deleteProduct: builder.mutation({
+      query: (productId) => ({ url: `${PRODUCTS_URL}/${productId}`, method: 'DELETE' }),
+    }),
+    uploadProductImage: builder.mutation({
+      query: (data) => ({ url: UPLOAD_URL, method: 'POST', body: data }),
+    }),
+  }),
 });
-//vraca detalje sa odredjenim idijem
-export const useGetProductDetailsQuery = (id) => ({
-  data: products.find((p) => p._id === id) || null,
-  isLoading: false,
-  error: null,
-});
+
+export const {
+  useGetProductsQuery,
+  useGetProductDetailsQuery,
+  useCreateProductMutation,
+  useUpdateProductMutation,
+  useDeleteProductMutation,
+  useUploadProductImageMutation,
+} = productsApiSlice;
