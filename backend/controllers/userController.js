@@ -2,7 +2,7 @@ import asyncHandler from '../middleware/asyncHandler.js';
 import User from '../models/userModel.js';
 import generateToken from '../utils/generateToken.js';
 
-// @desc  Auth user & get token
+//  Auth user & get token
 // @route POST /api/users/login
 // @access Public
 const authUser = asyncHandler(async (req, res) => {
@@ -22,7 +22,7 @@ const authUser = asyncHandler(async (req, res) => {
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body;
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ email }); //da li je email zauzet
     if (userExists) {
         res.status(400);
         throw new Error('Korisnik već postoji');
@@ -44,6 +44,10 @@ const logoutUser = asyncHandler(async (req, res) => {
     res.clearCookie('jwt', '', { httpOnly: true, expires: new Date(0) });
     res.status(200).json({ message: 'Korisnik uspešno odjavljen' });
 });
+//ne briše token sa servera, 
+// nego briše kolačić u browseru postavljajući mu rok trajanja u prošlost.
+
+
 
 // @desc  Get user profile
 // @route GET /api/users/profile

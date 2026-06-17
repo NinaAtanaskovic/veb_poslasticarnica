@@ -4,6 +4,8 @@ import { addOrderItems, getMyOrders, getOrderById, updateOrderToPaid, updateOrde
 import { protect, admin } from '../middleware/authMiddleware.js';
 
 router.route("/").post(protect, addOrderItems).get(protect, admin, getOrders);
+//Middleware(admin) se navodi između rute i controller funkcije 
+// prvo proveri token, pa proveri je li admin, pa tek onda pozovi controller.
 router.route("/myorders").get(protect, getMyOrders);
 router.route("/:id").get(protect, getOrderById);
 router.route("/:id/pay").put(protect, updateOrderToPaid);

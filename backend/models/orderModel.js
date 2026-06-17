@@ -2,12 +2,13 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
-    orderItems: [{
-        name: { type: String, required: true },
+    orderItems: [{ //niz prizvoda
+        name: { type: String, required: true },//cuva u tren kupovine jer se cena moze menjati
         qty: { type: Number, required: true },
         image: { type: String, required: true },
         price: { type: Number, required: true },
         product: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Product" },
+        //referenca na product kolekciju u bazi
     }],
     shippingAddress: {
         address: { type: String, required: true },

@@ -1,12 +1,15 @@
 import jwt from 'jsonwebtoken';
 import asyncHandler from './asyncHandler.js';
 import User from '../models/userModel.js';
+// štiti rute od neprijavljenih korisnika. Kada stigne zahtev
+//Traži JWT token u kolačiću browsera (req.cookies.jwt)
 
 const protect = asyncHandler(async (req, res, next) => {
     let token;
     token = req.cookies.jwt;
     if (token) {
         try {
+            //Ako ima token — verifikuje ga tajnim ključem iz .env
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             req.user = await User.findById(decoded.userId).select('-password');
             next();

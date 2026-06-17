@@ -7,16 +7,17 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     isAdmin: { type: Boolean, required: true, default: false },
 }, { timestamps: true });
-
+// u bazi je lozinka sifrovana, ovo je sifruje pa poredi sa bazom
 userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
-
+//izvrsava se pre svakog cuvanja 
 userSchema.pre('save', async function () {
     if (!this.isModified('password')) return;
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
-});
+}); 
+//fora je da uvek hasujemo sifru 
 
 const User = mongoose.model("User", userSchema);
 

@@ -1,9 +1,11 @@
 import asyncHandler from '../middleware/asyncHandler.js';
 import Order from '../models/orderModel.js';
 
-// @desc  Create new order
+//   Create new order
 // @route POST /api/orders
 // @access Private
+
+//prima podatke o porudzbini sa fronta
 const addOrderItems = asyncHandler(async (req, res) => {
     const { orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body;
     if (orderItems && orderItems.length === 0) {
@@ -11,6 +13,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
         throw new Error('Nema stavki u porudžbini');
     } else {
         const order = new Order({
+            //uklanja id jer mongo definise novi
             orderItems: orderItems.map((x) => ({ ...x, product: x._id, _id: undefined })),
             user: req.user._id,
             shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice
@@ -31,6 +34,9 @@ const getMyOrders = asyncHandler(async (req, res) => {
 // @desc  Get order by ID
 // @route GET /api/orders/:id
 // @access Private
+
+//umesto da vraća samo ID korisnika, 
+// Mongoose automatski trazi User kolekciju i zameni ID sa pravim imenom i emailom.
 const getOrderById = asyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id).populate('user', 'name email');
     if (order) {
