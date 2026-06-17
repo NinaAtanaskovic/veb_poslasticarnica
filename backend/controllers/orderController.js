@@ -23,7 +23,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     }
 });
 
-// @desc  Get logged in user orders
+//   Get logged in user orders
 // @route GET /api/orders/myorders
 // @access Private
 const getMyOrders = asyncHandler(async (req, res) => {
@@ -31,7 +31,7 @@ const getMyOrders = asyncHandler(async (req, res) => {
     res.status(200).json(orders);
 });
 
-// @desc  Get order by ID
+//   Get order by ID
 // @route GET /api/orders/:id
 // @access Private
 
@@ -47,7 +47,7 @@ const getOrderById = asyncHandler(async (req, res) => {
     }
 });
 
-// @desc  Update order to paid
+//   Update order to paid
 // @route PUT /api/orders/:id/pay
 // @access Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
@@ -69,7 +69,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     }
 });
 
-// @desc  Update order to delivered
+//   Update order to delivered
 // @route PUT /api/orders/:id/deliver
 // @access Private/Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
@@ -85,7 +85,7 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
     }
 });
 
-// @desc  Get all orders
+//   Get all orders
 // @route GET /api/orders
 // @access Private/Admin
 const getOrders = asyncHandler(async (req, res) => {

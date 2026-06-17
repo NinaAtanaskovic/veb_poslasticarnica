@@ -42,7 +42,7 @@ app.get('/api/config/paypal', (req, res) =>
 //  ne čuvamo ga direktno u frontend kodu jer bi bio vidljiv svima
 
 
-
+//ako neko traži /uploads/nesto.jpg, samo mu vrati fajl sa diska
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 //servira slike statički
